@@ -1,0 +1,155 @@
+@import "mixins";
+@import "variable";
+
+// setting vars
+$containerWidth: 1384px;
+
+
+// setting style
+* {box-sizing: border-box;}
+
+html {
+	font-size: 16px;
+}
+
+body, html {
+	width: 100%;
+	height: 100%;
+}
+
+input, textarea {
+   -webkit-appearance: none;
+   box-shadow: none;
+   -webkit-box-shadow: none;
+   -webkit-border-radius: 0;
+   -moz-border-radius: 0;
+   border-radius: 0;
+
+   &:focus {
+   	outline: 0;
+   }
+
+	@include placeholder {
+		color: $placeholder;
+		opacity: 1;
+	}
+}
+
+select, textarea {
+	&:focus {
+   		outline: 0;
+   	}
+}
+
+ol, ul {
+	padding: 0;
+	margin: 0;
+}
+
+p {margin: 0; padding: 0;}
+table {border-collapse: separate;border-spacing: 0;}
+caption, th, td {text-align: left;font-weight: normal;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: "";}
+blockquote, q {quotes: "" "";}
+.clear {clear: both;}
+.clearfix:after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+//Для картинок
+img {max-width: 100%;}
+
+img.j-image-polyfill {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	font-family: 'object-fit: cover';
+}
+
+// Класс для скрытия блока
+.hide {display: none;}
+// Класс для показа блока
+.show {display: block;}
+
+.sprite-container {
+	display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $blue-dark;
+}
+
+.button {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 18px;
+	line-height: 30px;
+	color: $white;
+	font-weight: 500;
+	text-decoration: none;
+	background-color: $violet;
+	border-radius: 50px;
+	border: none;
+	padding: 15px 58px;
+	cursor: pointer;
+	transition: background ease 0.5s;
+
+	&:focus {
+		outline: 0;
+	}
+
+	@include laptop {
+		&:hover {
+			background-color: $violet-light;
+		}
+	}
+
+	&--yellow {
+		background-color: $orange;
+
+		@include laptop {
+			&:hover {
+				background-color: $orange-light;
+			}
+		}
+	}
+
+	&--submit {
+		font-size: 16px;
+		line-height: 26px;
+		padding: 11px 28px;
+	}
+}
+
+.title-h1 {
+	font-size: 35px;
+	line-height: 45px;
+	color: $blue-dark;
+	text-align: center;
+	font-weight: 700;
+	margin: 0 0 40px;
+
+	@include tablet-portrait {
+		margin-bottom: 37px;
+	}
+}
+
+.description {
+	font-size: 23px;
+	line-height: 36px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 54px;
+
+	@include tablet-portrait {
+		margin-bottom: 56px;
+	}
+
+	&--max-width {
+		max-width: 649px;
+	}
+}
