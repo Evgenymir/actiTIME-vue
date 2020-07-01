@@ -2,14 +2,14 @@
     <main class="main-content">
         <div class="index-content">
             <h1 class="title-h1">
-                Features
+                {{mainTitle}}
             </h1>
             <div class="description description--max-width">
-                Some of the features and advantages that we provide for those of you who store data in this Data Warehouse.
+                {{mainDescription}}
             </div>
         </div>
-        <section class="section-features-slider">
-            <SliderLinks />
+        <section class="description-product-slider">
+            <app-slider-links />
         </section>
     </main>
 </template>
@@ -19,8 +19,14 @@
 
     export default {
         name: "main-content",
+        data() {
+            return {
+                mainTitle: 'Features',
+                mainDescription: 'Some of the features and advantages that we provide for those of you who store data in this Data Warehouse.',
+            }
+        },
         components: {
-            SliderLinks
+            appSliderLinks: SliderLinks
         }
     }
 </script>
@@ -61,7 +67,7 @@
         }
     }
 
-    .section-features-slider {
+    .description-product-slider {
         grid-column: 1 / -1;
 
         @include tablet-portrait {
@@ -83,6 +89,8 @@
 
         @include for-ie {
             max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 </style>

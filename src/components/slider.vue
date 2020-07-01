@@ -1,32 +1,32 @@
 <template>
-    <div class="slider-description-links">
-        <div class="slider-description-links__wrapper">
-            <Slick-Slider
+    <div class="slider-description-product">
+        <div class="slider-description-product__wrapper">
+            <app-slick-slider
                     ref="slick"
                     :options="slickOptions"
-                    class="slider-description-links__content">
+                    class="slider-description-product__content">
                 <div
                     v-for="sliderItem of sliderItems"
                     v-bind:key="sliderItem.title"
-                    class="slider-description-links__item"
+                    class="slider-description-product__item"
                 >
-                    <article class="slider-description-links__item-content">
-                        <span v-if="sliderItem.label.length" class="slider-description-links__item-label">
+                    <article class="slider-description-product__item-content">
+                        <span v-if="sliderItem.label.length" class="slider-description-product__item-label">
                             {{ sliderItem.label }}
                         </span>
-                        <h2 class="slider-description-links__item-title">
+                        <h2 class="slider-description-product__item-title">
                             {{ sliderItem.title }}
                         </h2>
-                        <p class="slider-description-links__item-text">
+                        <p class="slider-description-product__item-text">
                             {{ sliderItem.text }}
                         </p>
-                        <a :href="sliderItem.href" class="slider-description-links__item-link">
+                        <a :href="sliderItem.href" class="slider-description-product__item-link">
                             Learn more
-                            <ArrowRight class="slider-description-links__item-icon" />
+                            <app-arrow-right class="slider-description-product__item-icon" />
                         </a>
                     </article>
                 </div>
-            </Slick-Slider>
+            </app-slick-slider>
         </div>
     </div>
 </template>
@@ -81,8 +81,8 @@
             }
         },
         components: {
-            ArrowRight,
-            SlickSlider,
+            appArrowRight: ArrowRight,
+            appSlickSlider: SlickSlider,
         }
     }
 </script>
@@ -91,7 +91,7 @@
     @import '../assets/scss/mixins';
     @import '../assets/scss/variable';
 
-    .slider-description-links {
+    .slider-description-product {
         background-color: $yellow;
         padding: 38px 0 27px;
 

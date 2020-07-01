@@ -3,11 +3,11 @@
         <div class="header__wrapper">
             <div class="header__logo">
                 <a href="/" class="logo">
-                    <Logo />
+                    <app-logo />
                 </a>
             </div>
             <div class="header__menu">
-                <Menu />
+                <app-menu />
             </div>
             <div class="header__button">
                 <a href="#" class="button">
@@ -15,10 +15,10 @@
                 </a>
             </div>
             <div class="header__burger">
-                <Burger v-on:menuIsOpen="mobileMenuIsOpen = $event"/>
+                <app-burger v-on:menuIsOpen="mobileMenuIsOpen = $event"/>
             </div>
         </div>
-        <MobileMenu v-bind:mobileMenuIsOpen="mobileMenuIsOpen"/>
+        <app-mobile-menu v-bind:mobileMenuIsOpen="mobileMenuIsOpen"/>
     </header>
 </template>
 
@@ -35,10 +35,10 @@ export default {
         }
     },
     components: {
-        Logo,
-        Menu,
-        MobileMenu,
-        Burger
+        appLogo: Logo,
+        appMenu: Menu,
+        appMobileMenu: MobileMenu,
+        appBurger: Burger
     }
 }
 </script>

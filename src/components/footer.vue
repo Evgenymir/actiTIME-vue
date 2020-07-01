@@ -3,25 +3,23 @@
         <div class="footer__wrapper">
             <div class="footer__logo">
                 <a href="/" class="logo">
-                    <logo-white />
+                    <app-logo-white />
                 </a>
             </div>
             <div class="footer__menu">
                 <ul class="footer__menu-list">
-                    <li class="footer__menu-item">
-                        <a href="#" class="footer__menu-link">
-                            About Us
-                        </a>
-                    </li>
-                    <li class="footer__menu-item">
-                        <a href="#" class="footer__menu-link">
-                            Privacy Policy
+                    <li
+                        v-for="footerMenuItem in footerMenuItems"
+                        v-bind:key="footerMenuItem.name"
+                        class="footer__menu-item">
+                        <a v-bind:href="footerMenuItem.name" class="footer__menu-link">
+                            {{footerMenuItem.name}}
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="footer__form">
-                <Subscribe />
+                <app-subscribe />
             </div>
         </div>
     </footer>
@@ -31,9 +29,22 @@
     import Subscribe from '../components/form-subscribe'
 
     export default {
+        data() {
+            return {
+                footerMenuItems: [
+                    {
+                        name: 'About Us',
+                        href: '#'
+                    }, {
+                        name: 'Privacy Policy',
+                        href: '#'
+                    },
+                ]
+            }
+        },
         components: {
-            LogoWhite,
-            Subscribe
+            appLogoWhite: LogoWhite,
+            appSubscribe: Subscribe
         }
     }
 </script>

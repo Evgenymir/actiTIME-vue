@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <Main-content></Main-content>
-    <Footer></Footer>
+    <app-header></app-header>
+    <app-main-content></app-main-content>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -15,9 +15,9 @@ import Footer from './components/footer';
 export default {
   name: 'App',
   components: {
-    Header,
-    MainContent,
-    Footer
+    appHeader: Header,
+    appMainContent: MainContent,
+    appFooter: Footer,
   }
 }
 </script>

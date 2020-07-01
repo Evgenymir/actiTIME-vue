@@ -1,19 +1,19 @@
 <template>
-    <div v-bind:class="['mobile-menu', {'is-active': mobileMenuIsOpen}]">
+    <div v-bind:class="['mobile-menu', {'mobile-menu--is-open': mobileMenuIsOpen}]">
         <ul class="mobile-menu__list">
             <li
-                v-for="menuItem in menuItems"
-                v-bind:key="menuItem.name"
+                v-for="mobileMenuItem in MobileMenuItems"
+                v-bind:key="mobileMenuItem.name"
                 class="mobile-menu__item">
-                <a v-bind:href="menuItem.href" class="mobile-menu__link" @click="clickHandler">
-                    {{menuItem.name}}
-                    <ArrowRight v-if="menuItem.submenuItems.length" />
+                <a v-bind:href="mobileMenuItem.href" class="mobile-menu__link" @click="clickHandler">
+                    {{mobileMenuItem.name}}
+                    <app-arrow-right v-if="mobileMenuItem.submenuItems.length" />
                 </a>
                 <ul
-                    v-if="menuItem.submenuItems.length"
-                    v-bind:class="['mobile-menu__submenu', {'is-open': submenuIsActive}]">
+                    v-if="mobileMenuItem.submenuItems.length"
+                    v-bind:class="['mobile-menu__submenu', {'mobile-menu__submenu--is-open': submenuIsActive}]">
                     <li
-                        v-for="submenuItem in menuItem.submenuItems"
+                        v-for="submenuItem in mobileMenuItem.submenuItems"
                         v-bind:key="submenuItem.name"
                         class="mobile-menu__submenu-item">
                         <a v-bind:href="submenuItem.href" class="mobile-menu__submenu-link">
@@ -40,7 +40,7 @@
         name: "mobile-menu",
         data() {
             return {
-                menuItems: [
+                MobileMenuItems: [
                     {
                         name: 'About',
                         href: '#',
@@ -68,19 +68,19 @@
             }
         },
         components: {
-            ArrowRight
+            appArrowRight: ArrowRight
         },
         methods: {
             clickHandler: function(event) {
                 const submenu = event.target.nextElementSibling;
                 if (submenu) {
                     event.preventDefault();
-                    if (submenu.classList.contains('is-open')) {
-                        event.target.classList.remove('is-open');
-                        submenu.classList.remove('is-open');
+                    if (submenu.classList.contains('mobile-menu__submenu--is-open')) {
+                        event.target.classList.remove('mobile-menu__link--is-active');
+                        submenu.classList.remove('mobile-menu__submenu--is-open');
                     } else {
-                        event.target.classList.add('is-open');
-                        submenu.classList.add('is-open');
+                        event.target.classList.add('mobile-menu__link--is-active');
+                        submenu.classList.add('mobile-menu__submenu--is-open');
                     }
                 }
             }
@@ -105,7 +105,7 @@
         opacity: 0;
         transition: visibility, opacity, ease 0.5s;
 
-        &.is-active {
+        &--is-open {
             visibility: visible;
             opacity: 1;
         }
@@ -143,7 +143,7 @@
                 }
             }
 
-            &.is-open {
+            &--is-active {
                 svg {
                     transform: rotate(90deg);
                 }
@@ -172,7 +172,7 @@
             overflow: hidden;
             transition: visibility, opacity, ease 0.5s;
 
-            &.is-open {
+            &--is-open {
                 height: auto;
                 visibility: visible;
                 opacity: 1;

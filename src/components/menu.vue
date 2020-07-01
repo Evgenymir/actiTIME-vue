@@ -1,33 +1,29 @@
 <template>
     <nav class="menu">
         <ul class="menu__list">
-            <li class="menu__item">
-                <a href="#" class="menu__link">
-                    About
+            <li
+                v-for="mainMenuItem in mainMenuItems"
+                v-bind:key="mainMenuItem.name"
+                class="menu__item"
+            >
+                <a v-bind:href="mainMenuItem.href" class="menu__link">
+                    {{mainMenuItem.name}}
+                    <app-arrow v-if="mainMenuItem.submenuItems.length" class="menu__arrow" />
                 </a>
-            </li>
-            <li class="menu__item">
-                <a href="#" class="menu__link">
-                    Help
-                    <Arrow class="menu__arrow" />
-                </a>
-                <ul class="menu__submenu">
-                    <li class="menu__submenu-item">
-                        <a href="#" class="menu__submenu-link">
-                            User Guide
-                        </a>
-                    </li>
-                    <li class="menu__submenu-item">
-                        <a href="#" class="menu__submenu-link">
-                            Contact Support
+                <ul
+                    v-if="mainMenuItem.submenuItems.length"
+                    class="menu__submenu"
+                >
+                    <li
+                        v-for="submenuItem in mainMenuItem.submenuItems"
+                        v-bind:key="submenuItem.name"
+                        class="menu__submenu-item"
+                    >
+                        <a v-bind:href="submenuItem.href" class="menu__submenu-link">
+                            {{submenuItem.name}}
                         </a>
                     </li>
                 </ul>
-            </li>
-            <li class="menu__item">
-                <a href="#" class="menu__link">
-                    Features
-                </a>
             </li>
         </ul>
     </nav>
@@ -36,8 +32,35 @@
     import Arrow from '../image/icon/icon-arrow-bottom';
 
     export default {
+        data() {
+            return {
+                mainMenuItems: [
+                    {
+                        name: 'About',
+                        href: '#',
+                        submenuItems: [],
+                    }, {
+                        name: 'Help',
+                        href: '#',
+                        submenuItems: [
+                            {
+                                name: 'User Guide',
+                                href: '#',
+                            }, {
+                                name: 'Contact Support',
+                                href: '#',
+                            }
+                        ],
+                    }, {
+                        name: 'Features',
+                        href: '#',
+                        submenuItems: [],
+                    },
+                ]
+            }
+        },
         components: {
-            Arrow
+            appArrow: Arrow
         }
     }
 </script>
@@ -48,7 +71,6 @@
 
     .menu {
         display: none;
-        width: 65%;
 
         &__list {
             @include flex();
